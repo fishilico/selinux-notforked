@@ -127,7 +127,8 @@
 	const char*** roles_arr, 
 	unsigned int* num_roles) {
 
-	if ($result) {	
+	(void)&res4; /* mark num_roles as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
@@ -191,7 +192,8 @@
 	semanage_bool_t*** records, 
 	unsigned int* count) {
 
-	if ($result) {	
+	(void)&res3; /* mark count as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
@@ -235,7 +237,8 @@
 	semanage_fcontext_t*** records, 
 	unsigned int* count) {
 
-	if ($result) {	
+	(void)&res3; /* mark count as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
@@ -280,7 +283,8 @@
 	semanage_iface_t*** records, 
 	unsigned int* count) {
 
-	if ($result) {	
+	(void)&res3; /* mark count as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
@@ -325,7 +329,8 @@
 	semanage_seuser_t*** records, 
 	unsigned int* count) {
 
-	if ($result) {	
+	(void)&res3; /* mark count as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
@@ -369,7 +374,8 @@
 	semanage_user_t*** records, 
 	unsigned int* count) {
 
-	if ($result) {	
+	(void)&res3; /* mark count as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
@@ -413,7 +419,8 @@
 	semanage_port_t*** records, 
 	unsigned int* count) {
 
-	if ($result) {	
+	(void)&res3; /* mark count as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
@@ -457,6 +464,7 @@
 	semanage_ibpkey_t*** records,
 	unsigned int* count) {
 
+	(void)&res3; /* mark count as used */
 	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
@@ -501,6 +509,7 @@
 	semanage_ibendport_t*** records,
 	unsigned int* count) {
 
+	(void)&res3; /* mark count as used */
 	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
@@ -545,7 +554,8 @@
 	semanage_node_t*** records, 
 	unsigned int* count) {
 
-	if ($result) {	
+	(void)&res3; /* mark count as used */
+	if ($result) {
 		int value;
 		SWIG_AsVal_int($result, &value);
 		if (value >= 0) {
