@@ -1334,7 +1334,10 @@ static int cond_expr_to_cil(int indent, struct policydb *pdb, struct cond_expr *
 			// although we always supply val2 and there isn't always a 2nd
 			// value, it should only be used when there are actually two values
 			// in the format strings
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
 			rlen = snprintf(new_val, len, fmt_str, op, val1, val2);
+#pragma GCC diagnostic pop
 			if (rlen < 0 || rlen >= len) {
 				log_err("Failed to generate conditional expression");
 				rc = -1;
@@ -1873,7 +1876,10 @@ static int constraint_expr_to_string(struct policydb *pdb, struct constraint_exp
 			// although we always supply val2 and there isn't always a 2nd
 			// value, it should only be used when there are actually two values
 			// in the format strings
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
 			rlen = snprintf(new_val, len, fmt_str, op, val1, val2);
+#pragma GCC diagnostic pop
 			if (rlen < 0 || rlen >= len) {
 				log_err("Failed to generate constraint expression");
 				rc = -1;
