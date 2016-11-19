@@ -3830,6 +3830,10 @@ static int blocks_to_cil(struct policydb *pdb)
 	}
 
 	block = pdb->global;
+	if (!block) {
+		goto exit;
+	}
+
 	rc = global_block_to_cil(pdb, block, stack);
 	if (rc != 0) {
 		goto exit;
