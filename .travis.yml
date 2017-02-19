@@ -78,7 +78,9 @@ before_script:
   - export VIRTUAL_ENV="$HOME/virtualenv/$PYVER"
   - export PYTHON="$VIRTUAL_ENV/bin/python"
   # DEBUG
-  - find "$VIRTUAL_ENV" -name *.pc
+  - find "$VIRTUAL_ENV" -name *.pc || true
+  - find "$HOME" -name *.pc || true
+  - find "/" -name *.pc || true
   - export PKG_CONFIG_PATH="$VIRTUAL_ENV/lib/pkgconfig"
   # PyPy does not provide a config file for pkg-config nor a pypy-c.so
   - if echo "$PYVER" | grep -q pypy ; then export PYINC=-I$($PYTHON -c 'import sys;print(sys.prefix)')/include PYLIBS= ; fi
