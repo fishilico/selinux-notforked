@@ -11,6 +11,7 @@ compiler:
 env:
   matrix:
     # Test the last version of Python and Ruby together, with some linkers
+    - PYVER=python3.6 RUBYLIBVER=2.3 # testing
     - PYVER=python3.5 RUBYLIBVER=2.3
     - PYVER=python3.5 RUBYLIBVER=2.3 LINKER=gold
     - PYVER=python3.5 RUBYLIBVER=2.3 LINKER=bfd
@@ -76,6 +77,9 @@ before_script:
   # Configure the variables for Python parts
   - export VIRTUAL_ENV="$HOME/virtualenv/$PYVER"
   - export PYTHON="$VIRTUAL_ENV/bin/python"
+  # DEBUG
+  - find "$VIRTUAL_ENV" -name *.pc
+  - export PKG_CONFIG_PATH="$VIRTUAL_ENV/lib/pkgconfig"
   # PyPy does not provide a config file for pkg-config nor a pypy-c.so
   - if echo "$PYVER" | grep -q pypy ; then export PYINC=-I$($PYTHON -c 'import sys;print(sys.prefix)')/include PYLIBS= ; fi
   # Python virtualenvs do not support "import site; print(site.getsitepackages()[0]"
