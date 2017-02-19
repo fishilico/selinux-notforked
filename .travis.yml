@@ -82,6 +82,13 @@ before_script:
   - find "$HOME" -name *.pc || true
   - find "/" -name *.pc || true
   - export PKG_CONFIG_PATH="$VIRTUAL_ENV/lib/pkgconfig"
+  # Use /opt/python, which provides pkg-config files
+  - export VIRTUAL_ENV=""
+  - unset VIRTUAL_ENV
+  - export PYTHON="$(ls -d -1 "/opt/python/$PYVER"*/bin/python | head -n 1)"
+  - export PKG_CONFIG_PATH="${PYTHON%/bin/python}/lib/pkgconfig"
+  - echo "$PYTHON $PKG_CONFIG_PATH"
+  - find "$PKG_CONFIG_PATH"
   # PyPy does not provide a config file for pkg-config nor a pypy-c.so
   - if echo "$PYVER" | grep -q pypy ; then export PYINC=-I$($PYTHON -c 'import sys;print(sys.prefix)')/include PYLIBS= ; fi
   # Python virtualenvs do not support "import site; print(site.getsitepackages()[0]"
