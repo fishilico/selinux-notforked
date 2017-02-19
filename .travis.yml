@@ -77,11 +77,13 @@ before_script:
   - export VIRTUAL_ENV="$HOME/virtualenv/$PYVER"
   - export PYTHON="$VIRTUAL_ENV/bin/python"
   # Use the system-provided header files for Python because the virtualenvs do not provide Python.h
-  - export PYPREFIX="$($PYTHON -c 'import sys;print("python%d" % sys.version_info[0])')"
-  - find / -name Python.h || true
-  - find / -name 'libpython*.so' || true
-  - find / -name 'python*-config' || true
-  - find / -name 'python*.pc' || true
+  #- export PYPREFIX="$($PYTHON -c 'import sys;print("python%d" % sys.version_info[0])')"
+  - find / -name Python.h 2>/dev/null || true
+  - find / -name 'libpython*.so' 2>/dev/null || true
+  - find / -name 'python*-config' 2>/dev/null || true
+  - find / -name 'python*.pc' 2>/dev/null || true
+  - export PKG_CONFIG_PATH="/opt/python/$($PYTHON -c 'import sys;print("%d.%d.%d" % sys.version_info[:3])')/lib/pkgconfig"
+  - echo "$PKG_CONFIG_PATH" && find "$PKG_CONFIG_PATH" || true
   # PyPy does not provide a config file for pkg-config nor a pypy-c.so
   - if echo "$PYVER" | grep -q pypy ; then export PYINC=-I$($PYTHON -c 'import sys;print(sys.prefix)')/include PYLIBS= ; fi
   # Python virtualenvs do not support "import site; print(site.getsitepackages()[0]"
