@@ -481,7 +481,7 @@ static int cil_expr_to_string(struct cil_list *expr, char **out)
 				goto exit;
 				break;
 			}
-			stack[pos] = operand_str;
+			stack[pos] = strdup(operand_str);
 			pos++;
 			break;
 		}
