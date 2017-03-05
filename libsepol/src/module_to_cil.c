@@ -296,6 +296,8 @@ static int roles_gather_map(char *key, void *data, void *args)
 	role_node->role = role;
 
 	rc = list_prepend((struct list *)args, role_node);
+	if (rc != 0)
+		free(role_node);
 	return rc;
 }
 

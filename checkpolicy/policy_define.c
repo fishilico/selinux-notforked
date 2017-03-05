@@ -1833,6 +1833,17 @@ struct av_ioctl_range_list {
 	struct av_ioctl_range_list *next;
 };
 
+static void avrule_destroy_ioctls(struct av_ioctl_range_list *rangehead)
+{
+	struct av_ioctl_range_list *r;
+
+	while (rangehead != NULL) {
+		r = rangehead;
+		rangehead = rangehead->next;
+		free(r);
+	}
+}
+
 int avrule_sort_ioctls(struct av_ioctl_range_list **rangehead)
 {
 	struct av_ioctl_range_list *r, *r2, *sorted, *sortedhead = NULL;
@@ -1878,6 +1889,7 @@ int avrule_sort_ioctls(struct av_ioctl_range_list **rangehead)
 	return 0;
 error:
 	yyerror("out of memory");
+	avrule_destroy_ioctls(sortedhead);
 	return -1;
 }
 
@@ -1953,7 +1965,7 @@ error:
 /* flip to included ranges */
 int avrule_omit_ioctls(struct av_ioctl_range_list **rangehead)
 {
-	struct av_ioctl_range_list *rnew, *r, *newhead, *r2;
+	struct av_ioctl_range_list *rnew, *r, *newhead = NULL, *r2;
 
 	rnew = calloc(1, sizeof(struct av_ioctl_range_list));
 	if (!rnew)
@@ -1996,6 +2008,7 @@ int avrule_omit_ioctls(struct av_ioctl_range_list **rangehead)
 
 error:
 	yyerror("out of memory");
+	avrule_destroy_ioctls(newhead);
 	return -1;
 }
 
@@ -2014,17 +2027,21 @@ int avrule_ioctl_ranges(struct av_ioctl_range_list **rangelist)
 	omit = rangehead->omit;
 	/* sort and merge the input ioctls */
 	if (avrule_sort_ioctls(&rangehead))
-		return -1;
+		goto error;
 	if (avrule_merge_ioctls(&rangehead))
-		return -1;
+		goto error;
 	/* flip ranges if these are ommited*/
 	if (omit) {
 		if (avrule_omit_ioctls(&rangehead))
-			return -1;
+			goto error;
 	}
 
 	*rangelist = rangehead;
 	return 0;
+
+error:
+	avrule_destroy_ioctls(rangehead);
+	return -1;
 }
 
 int define_te_avtab_xperms_helper(int which, avrule_t ** rule)

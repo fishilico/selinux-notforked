@@ -708,6 +708,7 @@ append(affix_t **affixes, const char *val) {
 
 err:
 	log_error("allocation error %s", strerror(errno));
+	free(affix);
 	return -1;
 }
 
