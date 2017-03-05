@@ -249,7 +249,6 @@ checkbool:
 				/* Fall back to the prior image if genusers failed. */
 				data = olddata;
 				size = oldsize;
-				rc = 0;
 			} else {
 				if (olddata != map)
 					free(olddata);

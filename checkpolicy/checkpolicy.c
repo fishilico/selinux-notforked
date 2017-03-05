@@ -1138,8 +1138,6 @@ int main(int argc, char **argv)
 					printf("\nNo such class.\n");
 					break;
 				}
-				cladatum =
-				    policydb.class_val_to_struct[tclass - 1];
 			} else {
 				ans[strlen(ans) - 1] = 0;
 				cladatum =
@@ -1191,8 +1189,6 @@ int main(int argc, char **argv)
 					printf("\nNo such class.\n");
 					break;
 				}
-				cladatum =
-				    policydb.class_val_to_struct[tclass - 1];
 			} else {
 				ans[strlen(ans) - 1] = 0;
 				cladatum =

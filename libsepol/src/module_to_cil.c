@@ -1092,7 +1092,6 @@ static int roletype_role_in_ancestor_to_cil(struct policydb *pdb, struct stack *
 		goto exit;
 	}
 
-	curr = role_list->head;
 	for (curr = role_list->head; curr != NULL; curr = curr->next) {
 		role_node = curr->data;
 		if (!is_id_in_ancestor_scope(pdb, decl_stack, role_node->role_name, SYM_ROLES)) {
@@ -1284,7 +1283,6 @@ static int cond_expr_to_cil(int indent, struct policydb *pdb, struct cond_expr *
 				rc = -1;
 				goto exit;
 			}
-			num_params = 0;
 		} else {
 			switch(curr->expr_type) {
 			case COND_NOT:	op = "not";	break;
@@ -1828,7 +1826,6 @@ static int constraint_expr_to_string(struct policydb *pdb, struct constraint_exp
 				names = NULL;
 			}
 
-			num_params = 0;
 		} else {
 			switch (expr->expr_type) {
 			case CEXPR_NOT: op = "not"; break;
