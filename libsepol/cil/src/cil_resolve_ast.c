@@ -323,6 +323,8 @@ int cil_resolve_avrule(struct cil_tree_node *current, void *extra_args)
 	if (args != NULL) {
 		db = args->db;
 	}
+	if (args == NULL)
+		goto exit;
 
 	rc = cil_resolve_name(current, rule->src_str, CIL_SYM_TYPES, args, &src_datum);
 	if (rc != SEPOL_OK) {
@@ -2779,6 +2781,8 @@ int cil_resolve_call1(struct cil_tree_node *current, void *extra_args)
 	if (args != NULL) {
 		db = args->db;
 	}
+	if (args == NULL)
+		goto exit;
 
 	rc = cil_resolve_name(current, new_call->macro_str, CIL_SYM_BLOCKS, extra_args, &macro_datum);
 	if (rc != SEPOL_OK) {
