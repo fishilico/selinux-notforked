@@ -83,6 +83,14 @@ before_script:
   # Build and install in a temporary directory to run tests
   - export DESTDIR="$TRAVIS_BUILD_DIR/installdir"
 
+  # DEBUG: Python and Ruby envrionments?
+  - ls -l "$HOME/virtualenv"
+  - ls -l "$HOME/.rvm/rubies"
+  - find / -name virtualenv -print -exec ls -l {} \; 2>/dev/null || true
+  - find / -name rubies -print -exec ls -l {} \; 2> /dev/null || true
+  - find / -name pyenv -print -exec ls -l {} \; 2> /dev/null || true
+  - find / -name python -print -exec ls -l {} \; 2> /dev/null || true
+
   # Configure the variables for Python parts
   - export VIRTUAL_ENV="$HOME/virtualenv/$PYVER"
   - export PYTHON="$VIRTUAL_ENV/bin/python"
