@@ -39,7 +39,7 @@ matrix:
 # Use Travis-CI Ubuntu 14.04 Trusty infrastructure, "full image" variant
 sudo: required
 dist: trusty
-group: sugilite
+group: garnet
 
 # Install SELinux userspace utilities dependencies
 addons:
