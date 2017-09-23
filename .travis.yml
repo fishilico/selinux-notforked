@@ -21,8 +21,8 @@ env:
     - PYVER=python3.3 RUBYLIBVER=2.4
     - PYVER=python3.4 RUBYLIBVER=2.4
     - PYVER=python3.5 RUBYLIBVER=2.4
-    - PYVER=pypy2 RUBYLIBVER=2.4
-    #- PYVER=pypy3 RUBYLIBVER=2.3 # PyPy3 5.5.0 provides the Python2 form of some structures, which makes it incompatible with SWIG
+    - PYVER=pypy2-5.7.1 RUBYLIBVER=2.4
+    - PYVER=pypy3-5.8.0 RUBYLIBVER=2.4 # PyPy3 5.5.0 provides the Python2 form of some structures, which makes it incompatible with SWIG
 
     # Test several Ruby versions
     - PYVER=python3.6 RUBYLIBVER=2.1
@@ -75,6 +75,14 @@ install:
 
   # Make sepolgen tests work without really installing anything in the real root (doing this would conflict with Ubuntu packages)
   - sed -e "s,\"\(/usr/bin/[cs]\),\"$TRAVIS_BUILD_DIR/installdir\1," -i python/sepolgen/src/sepolgen/module.py
+
+  # Download the required python version if it is not installed
+  - VIRTUAL_ENV="$HOME/virtualenv/$PYVER"
+  - if ! [ -d "$VIRTUAL_ENV" ] ; then \
+        pwd && \
+        curl -v -o python.tar.bz2 "https://s3.amazonaws.com/travis-python-archives/binaries/ubuntu/14.04/x86_64/$PYVER" && \
+        sudo tar vxjf python.tar.bz2 --directory / ;
+    fi
 
 before_script:
   # clang on Travis-CI 14.04 environment is too old to support -Wdouble-promotion
