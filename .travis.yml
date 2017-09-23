@@ -25,7 +25,6 @@ env:
     - PYVER=pypy3 RUBYLIBVER=2.4 # PyPy3 5.5.0 provides the Python2 form of some structures, which makes it incompatible with SWIG
 
     # Test several Ruby versions
-    - PYVER=python3.6 RUBYLIBVER=2.1
     - PYVER=python3.6 RUBYLIBVER=2.2
     - PYVER=python3.6 RUBYLIBVER=2.3
 
@@ -79,10 +78,9 @@ install:
   # Download the required python version if it is not installed
   - VIRTUAL_ENV="$HOME/virtualenv/$PYVER"
   - if ! [ -d "$VIRTUAL_ENV" ] ; then
-        pwd &&
-        echo "$TRAVIS_BUILD_DIR" && ls -l "$TRAVIS_BUILD_DIR" &&
         curl -o python.tar.bz2 "https://s3.amazonaws.com/travis-python-archives/binaries/ubuntu/14.04/x86_64/${PYVER/python/python-}.tar.bz2" &&
-        sudo tar vxjf python.tar.bz2 --directory / ;
+        sudo tar xjf python.tar.bz2 --directory / &&
+        rm python.tar.bz2 ;
     fi
 
 before_script:
