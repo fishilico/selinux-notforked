@@ -78,10 +78,10 @@ install:
 
   # Download the required python version if it is not installed
   - VIRTUAL_ENV="$HOME/virtualenv/$PYVER"
-  - if ! [ -d "$VIRTUAL_ENV" ] ; then \
-        pwd && \
-        curl -v -o python.tar.bz2 "https://s3.amazonaws.com/travis-python-archives/binaries/ubuntu/14.04/x86_64/$PYVER" && \
-        sudo tar vxjf python.tar.bz2 --directory / ;
+  - if ! [ -d "$VIRTUAL_ENV" ] ; then
+        pwd &&
+        curl -v -o python.tar.bz2 "https://s3.amazonaws.com/travis-python-archives/binaries/ubuntu/14.04/x86_64/$PYVER" &&
+        sudo tar vxjf python.tar.bz2 --directory ;
     fi
 
 before_script:
