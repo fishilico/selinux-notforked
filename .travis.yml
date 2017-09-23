@@ -21,8 +21,8 @@ env:
     - PYVER=python3.3 RUBYLIBVER=2.4
     - PYVER=python3.4 RUBYLIBVER=2.4
     - PYVER=python3.5 RUBYLIBVER=2.4
-    - PYVER=pypy2-5.7.1 RUBYLIBVER=2.4
-    - PYVER=pypy3-5.8.0 RUBYLIBVER=2.4 # PyPy3 5.5.0 provides the Python2 form of some structures, which makes it incompatible with SWIG
+    - PYVER=pypy RUBYLIBVER=2.4
+    - PYVER=pypy3 RUBYLIBVER=2.4 # PyPy3 5.5.0 provides the Python2 form of some structures, which makes it incompatible with SWIG
 
     # Test several Ruby versions
     - PYVER=python3.6 RUBYLIBVER=2.1
