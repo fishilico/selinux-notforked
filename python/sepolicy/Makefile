@@ -1,14 +1,14 @@
 PYTHON ?= python
 
 # Installation directories.
-PREFIX ?= $(DESTDIR)/usr
-LIBDIR ?= $(PREFIX)/lib
-BINDIR ?= $(PREFIX)/bin
-DATADIR ?= $(PREFIX)/share
-MANDIR ?= $(PREFIX)/share/man
-LOCALEDIR ?= /usr/share/locale
-BASHCOMPLETIONDIR ?= $(DESTDIR)/usr/share/bash-completion/completions
-SHAREDIR ?= $(PREFIX)/share/sandbox
+PREFIX ?= /usr
+LIBDIR ?= $(DESTDIR)$(PREFIX)/lib
+BINDIR ?= $(DESTDIR)$(PREFIX)/bin
+DATADIR ?= $(DESTDIR)$(PREFIX)/share
+MANDIR ?= $(DESTDIR)$(PREFIX)/share/man
+LOCALEDIR ?= $(DESTDIR)$(PREFIX)/share/locale
+BASHCOMPLETIONDIR ?= $(DESTDIR)$(PREFIX)/share/bash-completion/completions
+SHAREDIR ?= $(DESTDIR)$(PREFIX)/share/sandbox
 CFLAGS ?= -Wall -Werror -Wextra -W
 override CFLAGS += -DPACKAGE="policycoreutils" -DSHARED -shared
 
@@ -30,7 +30,7 @@ test:
 	@$(PYTHON) test_sepolicy.py -v
 
 install:
-	$(PYTHON) setup.py install `test -n "$(DESTDIR)" && echo --root $(DESTDIR)`
+	$(PYTHON) setup.py install --prefix=$(PREFIX) `test -n "$(DESTDIR)" && echo --root $(DESTDIR)`
 	[ -d $(BINDIR) ] || mkdir -p $(BINDIR)
 	install -m 755 sepolicy.py $(BINDIR)/sepolicy
 	(cd $(BINDIR); ln -sf sepolicy sepolgen)
