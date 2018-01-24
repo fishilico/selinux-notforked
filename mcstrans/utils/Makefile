@@ -5,7 +5,6 @@ SBINDIR ?= $(DESTDIR)$(PREFIX)/sbin
 
 CFLAGS ?= -Wall
 override CFLAGS += -I../src -D_GNU_SOURCE
-override LDLIBS += -lselinux -lpcre
 
 TARGETS=transcon untranscon
 
@@ -19,10 +18,10 @@ endif
 all: $(TARGETS)
 
 transcon: transcon.o ../src/mcstrans.o ../src/mls_level.o $(LIBSEPOLA)
-	$(CC) $(CFLAGS) -o $@ $^ -lpcre -lselinux $(LDLIBS_LIBSEPOLA)
+	$(CC) $(LDFLAGS) -o $@ $^ -lpcre -lselinux $(LDLIBS_LIBSEPOLA)
 
 untranscon: untranscon.o ../src/mcstrans.o ../src/mls_level.o $(LIBSEPOLA)
-	$(CC) $(CFLAGS) -o $@ $^ -lpcre -lselinux $(LDLIBS_LIBSEPOLA)
+	$(CC) $(LDFLAGS) -o $@ $^ -lpcre -lselinux $(LDLIBS_LIBSEPOLA)
 
 install: all
 	-mkdir -p $(SBINDIR)
