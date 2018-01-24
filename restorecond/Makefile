@@ -1,13 +1,12 @@
 PKG_CONFIG ?= pkg-config
 
 # Installation directories.
-PREFIX ?= $(DESTDIR)/usr
-SBINDIR ?= $(PREFIX)/sbin
-LIBDIR ?= $(PREFIX)/lib
-MANDIR = $(PREFIX)/share/man
+PREFIX ?= /usr
+SBINDIR ?= $(DESTDIR)$(PREFIX)/sbin
+MANDIR = $(DESTDIR)$(PREFIX)/share/man
 AUTOSTARTDIR = $(DESTDIR)/etc/xdg/autostart
-DBUSSERVICEDIR = $(DESTDIR)/usr/share/dbus-1/services
-SYSTEMDDIR ?= $(DESTDIR)/usr/lib/systemd
+DBUSSERVICEDIR = $(DESTDIR)$(PREFIX)/share/dbus-1/services
+SYSTEMDDIR ?= $(DESTDIR)$(PREFIX)/lib/systemd
 
 autostart_DATA = sealertauto.desktop
 INITDIR ?= $(DESTDIR)/etc/rc.d/init.d
