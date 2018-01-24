@@ -1,8 +1,8 @@
 # Installation directories.
-PREFIX ?= $(DESTDIR)/usr
-SBINDIR ?= $(DESTDIR)/sbin
-MANDIR ?= $(PREFIX)/share/man
-LOCALEDIR ?= $(PREFIX)/share/locale
+PREFIX ?= /usr
+SBINDIR ?= $(DESTDIR)$(PREFIX)/sbin
+MANDIR ?= $(DESTDIR)$(PREFIX)/share/man
+LOCALEDIR ?= $(DESTDIR)$(PREFIX)/share/locale
 
 .PHONY: all
 all: fixfiles

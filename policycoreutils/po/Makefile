@@ -2,6 +2,7 @@
 # Makefile for the PO files (translation) catalog
 #
 
+PREFIX ?= /usr
 TOP	 = ../..
 
 # What is this package?
@@ -12,7 +13,7 @@ INSTALL_DATA	= $(INSTALL) -m 644
 INSTALL_DIR	= /usr/bin/install -d
 
 # destination directory
-INSTALL_NLS_DIR = $(DESTDIR)/usr/share/locale
+INSTALL_NLS_DIR = $(DESTDIR)$(PREFIX)/share/locale
 
 # PO catalog handling
 MSGMERGE	= msgmerge

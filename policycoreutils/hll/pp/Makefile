@@ -1,9 +1,6 @@
 # Installation directories.
-PREFIX ?= $(DESTDIR)/usr
-INCLUDEDIR ?= $(PREFIX)/include
-MANDIR = $(PREFIX)/share/man
-LIBDIR ?= $(PREFIX)/lib
-LIBEXECDIR ?= $(PREFIX)/libexec
+PREFIX ?= /usr
+LIBEXECDIR ?= $(DESTDIR)$(PREFIX)/libexec
 HLLDIR ?= $(LIBEXECDIR)/selinux/hll
 
 CFLAGS ?= -Werror -Wall -W
