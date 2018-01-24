@@ -1,14 +1,14 @@
 PYTHON ?= python
 
 # Installation directories.
-PREFIX ?= $(DESTDIR)/usr
+PREFIX ?= /usr
 SYSCONFDIR ?= $(DESTDIR)/etc/sysconfig
-LIBDIR ?= $(PREFIX)/lib
-BINDIR ?= $(PREFIX)/bin
-SBINDIR ?= $(PREFIX)/sbin
-MANDIR ?= $(PREFIX)/share/man
+LIBDIR ?= $(DESTDIR)$(PREFIX)/lib
+BINDIR ?= $(DESTDIR)$(PREFIX)/bin
+SBINDIR ?= $(DESTDIR)$(PREFIX)/sbin
+MANDIR ?= $(DESTDIR)$(PREFIX)/share/man
 LOCALEDIR ?= /usr/share/locale
-SHAREDIR ?= $(PREFIX)/share/sandbox
+SHAREDIR ?= $(DESTDIR)$(PREFIX)/share/sandbox
 override CFLAGS += -DPACKAGE="\"policycoreutils\"" -Wall -Werror -Wextra -W
 override LDLIBS += -lselinux -lcap-ng
 SEUNSHARE_OBJS = seunshare.o
