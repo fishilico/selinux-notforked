@@ -4,7 +4,7 @@ PYTHON ?= python
 PREFIX ?= /usr
 SBINDIR ?= $(DESTDIR)$(PREFIX)/sbin
 MANDIR = $(DESTDIR)$(PREFIX)/share/man
-PYTHONLIBDIR ?= $(shell $(PYTHON) -c "from distutils.sysconfig import *; print(get_python_lib(plat_specific=1, prefix='$(PREFIX)'))")
+PYTHONLIBDIR ?= $(shell $(PYTHON) -c "from distutils.sysconfig import *; print(get_python_lib(prefix='$(PREFIX)'))")
 PACKAGEDIR ?= $(DESTDIR)/$(PYTHONLIBDIR)
 BASHCOMPLETIONDIR ?= $(DESTDIR)$(PREFIX)/share/bash-completion/completions
 
